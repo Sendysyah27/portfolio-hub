@@ -1,0 +1,613 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="dark" />
+    <meta name="description" content="Hub portofolio Sendy Syah Ramadhan (@senzwh) — aplikasi, bot otomasi, dan konten AI yang semuanya dibangun dari satu HP Android." />
+    <link rel="icon" href="data:," />
+    <title>Hub Portofolio — Sendy Syah Ramadhan</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@600;700;800&family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg: #0d0e11;
+        --bg-soft: #121317;
+        --surface: #15171c;
+        --surface-2: #1b1e24;
+        --ink: #edeff2;
+        --ink-soft: #a3aab5;
+        --line: #24272e;
+        --line-strong: #32363f;
+        --accent: #6f9fd8;
+        --accent-deep: #93b6e4;
+        --accent-ink: #0a0d12;
+        --badge-live-bg: rgba(94, 168, 110, 0.14);
+        --badge-live-ink: #8fce9f;
+        --badge-dev-bg: rgba(214, 164, 84, 0.13);
+        --badge-dev-ink: #e3bc7d;
+        --shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
+        --shadow-sm: 0 2px 10px rgba(0, 0, 0, 0.22);
+      }
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      @media (prefers-reduced-motion: reduce) {
+        html { scroll-behavior: auto; }
+        * { transition: none !important; }
+      }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: "Public Sans", system-ui, sans-serif;
+        font-size: 16px;
+        line-height: 1.6;
+      }
+      a { color: inherit; }
+      .wrap { max-width: 1120px; margin: 0 auto; padding: 0 20px; }
+
+      /* ---------- Hero ---------- */
+      .hero {
+        padding: 56px 0 8px;
+        display: grid;
+        grid-template-columns: 1.05fr 0.95fr;
+        gap: 40px;
+        align-items: center;
+      }
+      .handle {
+        display: inline-flex; align-items: center; gap: 8px;
+        font-family: "IBM Plex Mono", monospace; font-size: 13px; font-weight: 500;
+        border: 1px solid var(--line); border-radius: 999px; padding: 5px 14px;
+        background: var(--surface); color: var(--ink-soft);
+      }
+      .handle .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); flex: none; }
+      h1 {
+        font-family: "Manrope", sans-serif; font-weight: 800;
+        font-size: clamp(36px, 6vw, 58px); line-height: 1.08; letter-spacing: -0.02em;
+        margin: 22px 0 16px;
+      }
+      h1 .hl-lime { color: var(--accent-deep); }
+      h1 .hl-orange { color: var(--accent); }
+      .lede { font-size: 17.5px; color: var(--ink-soft); max-width: 34em; margin: 0 0 28px; }
+      .lede strong { color: var(--ink); }
+      .cta-row { display: flex; flex-wrap: wrap; gap: 12px; }
+      .btn {
+        display: inline-flex; align-items: center; gap: 9px;
+        font-weight: 600; font-size: 15px; text-decoration: none;
+        border: 1px solid var(--line-strong); border-radius: 10px; padding: 11px 19px;
+        background: var(--surface); color: var(--ink);
+        transition: background 0.15s ease, border-color 0.15s ease;
+      }
+      .btn:hover { background: var(--surface-2); border-color: var(--accent); }
+      .btn.primary { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+      .btn.primary:hover { background: var(--accent-deep); border-color: var(--accent-deep); }
+      .btn svg { flex: none; }
+      .hero-art {
+        border: 1px solid var(--line); border-radius: 16px; overflow: hidden;
+        box-shadow: var(--shadow); background: var(--surface-2); line-height: 0;
+      }
+      .hero-art img { width: 100%; height: auto; display: block; }
+
+      /* ---------- Stats ---------- */
+      .stats {
+        margin: 44px 0 8px;
+        display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px;
+      }
+      .stat {
+        border: 1px solid var(--line); border-radius: 12px; background: var(--surface);
+        padding: 18px 20px;
+      }
+      .stat b {
+        display: block; font-family: "Manrope", sans-serif;
+        font-size: 28px; font-weight: 800; line-height: 1.1; letter-spacing: -0.01em;
+      }
+      .stat span { font-size: 13.5px; color: var(--ink-soft); }
+
+      /* ---------- Sections ---------- */
+      section { padding: 48px 0 6px; }
+      .sec-head { margin-bottom: 22px; }
+      .sec-head h2 {
+        font-family: "Manrope", sans-serif; font-weight: 800;
+        font-size: clamp(25px, 4vw, 34px); margin: 0 0 6px; line-height: 1.15; letter-spacing: -0.015em;
+      }
+      .sec-head p { margin: 0; color: var(--ink-soft); max-width: 44em; }
+
+      /* ---------- Filter ---------- */
+      .filters { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 22px; }
+      .chip {
+        font-family: "IBM Plex Mono", monospace; font-size: 13px; font-weight: 500;
+        border: 1px solid var(--line-strong); border-radius: 999px; padding: 7px 16px;
+        background: var(--surface); color: var(--ink-soft); cursor: pointer;
+        transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+      }
+      .chip:hover { color: var(--ink); border-color: var(--accent); }
+      .chip[aria-pressed="true"] { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+
+      /* ---------- Project cards ---------- */
+      .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+      .card {
+        border: 1px solid var(--line); border-radius: 16px; overflow: hidden;
+        background: var(--surface); box-shadow: var(--shadow-sm);
+        display: flex; flex-direction: column;
+      }
+      .card .art { line-height: 0; border-bottom: 1px solid var(--line); background: var(--surface-2); }
+      .card .art img { width: 100%; height: 210px; object-fit: cover; display: block; }
+      .card .body { padding: 22px 24px 24px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
+      .card .top { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+      .card h3 { font-family: "Manrope", sans-serif; font-size: 22px; font-weight: 800; margin: 0; line-height: 1.2; letter-spacing: -0.01em; }
+      .badge {
+        flex: none; font-family: "IBM Plex Mono", monospace; font-size: 11.5px; font-weight: 600;
+        border-radius: 999px; padding: 4px 11px; border: 1px solid var(--line);
+      }
+      .badge.live { background: var(--badge-live-bg); color: var(--badge-live-ink); border-color: transparent; }
+      .badge.dev { background: var(--badge-dev-bg); color: var(--badge-dev-ink); border-color: transparent; }
+      .card p { margin: 0; color: var(--ink-soft); font-size: 15px; }
+      .tags { display: flex; flex-wrap: wrap; gap: 7px; margin-top: auto; padding-top: 6px; }
+      .tag {
+        font-family: "IBM Plex Mono", monospace; font-size: 12px; font-weight: 500;
+        border: 1px solid var(--line); border-radius: 6px; padding: 3px 9px;
+        background: var(--surface-2); color: var(--ink-soft);
+      }
+      .card .link {
+        font-weight: 600; font-size: 14.5px; text-decoration: none; color: var(--accent-deep);
+        display: inline-flex; align-items: center; gap: 6px;
+      }
+      .card .link:hover { text-decoration: underline; }
+
+      /* ---------- Expandable card details ---------- */
+      .card .detail {
+        border-top: 1px dashed var(--line-strong); padding-top: 12px;
+      }
+      .card .detail ul {
+        margin: 0; padding-left: 18px; color: var(--ink-soft); font-size: 14.5px;
+        display: flex; flex-direction: column; gap: 5px;
+      }
+      .card .detail ul strong { color: var(--ink); }
+      .card-foot { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-top: 4px; }
+      .expand-btn {
+        display: inline-flex; align-items: center; gap: 7px;
+        font-family: "IBM Plex Mono", monospace; font-size: 13px; font-weight: 500;
+        border: 1px solid var(--line-strong); border-radius: 8px; padding: 8px 14px;
+        background: var(--surface-2); color: var(--ink); cursor: pointer;
+        transition: background 0.15s ease, border-color 0.15s ease;
+      }
+      .expand-btn:hover { border-color: var(--accent); }
+      .expand-btn svg { transition: transform 0.15s ease; }
+      .expand-btn[aria-expanded="true"] svg { transform: rotate(180deg); }
+      .btn-sm { padding: 9px 15px; font-size: 14px; border-radius: 8px; }
+      .meta-line { font-family: "IBM Plex Mono", monospace; font-size: 12.5px; color: var(--ink-soft); }
+
+      /* ---------- Download ---------- */
+      .download {
+        border: 1px solid var(--line); border-radius: 16px; background: var(--surface);
+        box-shadow: var(--shadow-sm); padding: 28px 30px;
+        display: grid; grid-template-columns: 1.25fr 0.75fr; gap: 28px; align-items: center;
+      }
+      .download .top { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+      .download h3 { font-family: "Manrope", sans-serif; font-size: 25px; font-weight: 800; margin: 0 0 8px; letter-spacing: -0.01em; }
+      .download p { margin: 0 0 14px; color: var(--ink-soft); }
+      .dl-meta { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 14px; }
+      .dl-meta .tag {
+        font-family: "IBM Plex Mono", monospace; font-size: 12px; font-weight: 500;
+        border: 1px solid var(--line); border-radius: 6px; padding: 3px 9px;
+        background: var(--surface-2); color: var(--ink-soft);
+      }
+      .dl-notes { margin: 0; padding-left: 18px; color: var(--ink-soft); font-size: 14.5px; display: flex; flex-direction: column; gap: 6px; }
+      .dl-notes strong { color: var(--ink); }
+      .dl-action { display: flex; flex-direction: column; align-items: stretch; gap: 10px; text-align: center; }
+      .dl-btn { justify-content: center; font-size: 16px; padding: 15px 20px; }
+      .dl-sub { font-family: "IBM Plex Mono", monospace; font-size: 12.5px; color: var(--ink-soft); }
+
+      /* ---------- Lab list ---------- */
+      .lab { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+      .lab-item {
+        border: 1px solid var(--line); border-radius: 12px; background: var(--surface);
+        padding: 20px 22px; display: flex; flex-direction: column; gap: 7px;
+      }
+      .lab-item .top { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+      .lab-item h3 { font-family: "Manrope", sans-serif; font-size: 18px; font-weight: 800; margin: 0; }
+      .lab-item p { margin: 0; color: var(--ink-soft); font-size: 14.5px; }
+      .lab-item .link { font-weight: 600; font-size: 14px; text-decoration: none; color: var(--accent-deep); }
+      .lab-item .link:hover { text-decoration: underline; }
+      [hidden] { display: none !important; }
+
+      /* ---------- Channel ---------- */
+      .channel {
+        border: 1px solid var(--line); border-radius: 16px; background: var(--surface);
+        box-shadow: var(--shadow-sm); padding: 28px 30px;
+        display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 28px; align-items: center;
+      }
+      .channel h3 { font-family: "Manrope", sans-serif; font-size: 25px; font-weight: 800; margin: 0 0 8px; letter-spacing: -0.01em; }
+      .channel p { margin: 0 0 16px; color: var(--ink-soft); }
+      .schedule { display: flex; flex-direction: column; gap: 10px; }
+      .slot {
+        border: 1px solid var(--line); border-radius: 10px; background: var(--surface-2);
+        padding: 12px 16px; display: flex; justify-content: space-between; align-items: baseline; gap: 12px;
+      }
+      .slot b { font-family: "Manrope", sans-serif; font-size: 16px; font-weight: 700; }
+      .slot span { font-family: "IBM Plex Mono", monospace; font-size: 13px; font-weight: 500; color: var(--accent-deep); white-space: nowrap; }
+
+      /* ---------- About / stack ---------- */
+      .about { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 22px; }
+      .panel {
+        border: 1px solid var(--line); border-radius: 14px; background: var(--surface); padding: 24px 26px;
+      }
+      .panel h3 { font-family: "Manrope", sans-serif; font-size: 20px; font-weight: 800; margin: 0 0 10px; }
+      .panel p { margin: 0 0 12px; color: var(--ink-soft); font-size: 15px; }
+      .panel p:last-child { margin-bottom: 0; }
+      .panel p strong { color: var(--ink); }
+      .panel a { color: var(--accent-deep); text-decoration: none; }
+      .panel a:hover { text-decoration: underline; }
+      .panel a strong { color: var(--accent-deep); }
+
+      /* ---------- Instagram profile card ---------- */
+      .ig-card {
+        margin-top: 22px;
+        border: 1px solid var(--line); border-radius: 16px; background: var(--surface);
+        box-shadow: var(--shadow-sm); padding: 26px 28px;
+        display: flex; align-items: center; gap: 24px; flex-wrap: wrap;
+      }
+      .ig-avatar {
+        width: 84px; height: 84px; border-radius: 50%; flex: none;
+        background: var(--surface-2); border: 1px solid var(--line-strong);
+        display: flex; align-items: center; justify-content: center;
+        font-family: "Manrope", sans-serif; font-weight: 800; font-size: 34px; color: var(--accent);
+      }
+      .ig-info { flex: 1 1 260px; min-width: 0; }
+      .ig-name-row { display: flex; align-items: baseline; flex-wrap: wrap; gap: 4px 12px; }
+      .ig-name { font-family: "Manrope", sans-serif; font-size: 22px; font-weight: 800; margin: 0; letter-spacing: -0.01em; }
+      .ig-handle { font-family: "IBM Plex Mono", monospace; font-size: 13.5px; font-weight: 500; color: var(--accent-deep); }
+      .ig-bio { margin: 4px 0 14px; color: var(--ink-soft); font-size: 15px; }
+      .ig-stats { display: flex; flex-wrap: wrap; gap: 10px 30px; }
+      .ig-stat b { font-family: "Manrope", sans-serif; font-size: 17px; font-weight: 800; margin-right: 6px; }
+      .ig-stat span { font-size: 13.5px; color: var(--ink-soft); }
+      .ig-action { margin-left: auto; }
+
+      footer {
+        margin-top: 60px; border-top: 1px solid var(--line);
+        padding: 22px 0 34px; color: var(--ink-soft); font-size: 13.5px;
+        display: flex; flex-wrap: wrap; gap: 8px 22px; justify-content: space-between;
+      }
+      footer .mono { font-family: "IBM Plex Mono", monospace; }
+
+      /* ---------- Responsive ---------- */
+      @media (max-width: 860px) {
+        .hero { grid-template-columns: 1fr; padding-top: 34px; gap: 26px; }
+        .stats { grid-template-columns: 1fr 1fr; }
+        .grid, .lab, .about, .channel, .download { grid-template-columns: 1fr; }
+        .card .art img { height: 190px; }
+        .ig-card { padding: 22px; gap: 18px; }
+        .ig-action { margin-left: 0; width: 100%; }
+        .ig-action .btn { width: 100%; justify-content: center; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+
+      <!-- HERO -->
+      <header class="hero">
+        <div>
+          <span class="handle"><span class="dot"></span> @senzwh — hub portofolio</span>
+          <h1>Semua ini dibangun dari <span class="hl-lime">satu HP</span> <span class="hl-orange">Android.</span></h1>
+          <p class="lede">
+            Halo, gua <strong>Sendy Syah Ramadhan</strong> — tech enthusiast yang lagi jatuh cinta sama
+            dunia digital. Dari Termux di HP, gua bangun aplikasi Android, bot otomasi, sampai channel
+            YouTube dengan kru produksi AI. Ini rumah semua proyek gua.
+          </p>
+          <div class="cta-row">
+            <a class="btn primary" href="#proyek">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v13"/><path d="m6 11 6 6 6-6"/></svg>
+              Lihat proyek
+            </a>
+            <a class="btn" href="https://www.youtube.com/@senzwh_" target="_blank" rel="noopener">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M21.6 7.2a2.8 2.8 0 0 0-2-2C17.9 4.8 12 4.8 12 4.8s-5.9 0-7.6.4a2.8 2.8 0 0 0-2 2A29 29 0 0 0 2 12a29 29 0 0 0 .4 4.8 2.8 2.8 0 0 0 2 2c1.7.4 7.6.4 7.6.4s5.9 0 7.6-.4a2.8 2.8 0 0 0 2-2A29 29 0 0 0 22 12a29 29 0 0 0-.4-4.8ZM10 15.2V8.8L15.5 12Z"/></svg>
+              Channel YouTube
+            </a>
+            <a class="btn" href="#unduh">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v11"/><path d="m7 10 5 5 5-5"/><path d="M4 21h16"/></svg>
+              Download Harness Pure
+            </a>
+            <a class="btn" href="#kontak">Kontak &amp; sosmed</a>
+          </div>
+        </div>
+        <div class="hero-art">
+          <img src="./hero.webp" alt="Ilustrasi Sendy ngoding dari HP Android, dikelilingi jendela aplikasi, robot AI, dan tombol play video" width="1920" height="1280" />
+        </div>
+      </header>
+
+      <!-- STATS -->
+      <div class="stats" aria-label="Ringkasan">
+        <div class="stat"><b>8+</b><span>proyek aplikasi, bot &amp; sistem yang jalan</span></div>
+        <div class="stat"><b>100%</b><span>dibangun &amp; dirawat dari HP Android + Termux</span></div>
+        <div class="stat"><b>2 video</b><span>tiap hari di YouTube — long 09.00, short 12.00 WIB</span></div>
+        <div class="stat"><b>6 agent</b><span>kru AI di kantor produksi konten gua</span></div>
+      </div>
+
+      <!-- PROYEK UTAMA -->
+      <section id="proyek">
+        <div class="sec-head">
+          <h2>Proyek utama</h2>
+          <p>Empat yang paling aktif gua rawat sekarang. Saring pakai tombol di bawah kalau mau lihat per kategori.</p>
+        </div>
+
+        <div class="filters" role="group" aria-label="Saring proyek">
+          <button class="chip" type="button" data-filter="all" aria-pressed="true">Semua</button>
+          <button class="chip" type="button" data-filter="app" aria-pressed="false">Aplikasi</button>
+          <button class="chip" type="button" data-filter="bot" aria-pressed="false">Bot &amp; Otomasi</button>
+          <button class="chip" type="button" data-filter="ai" aria-pressed="false">AI &amp; Konten</button>
+        </div>
+
+        <div class="grid">
+          <article class="card" data-cat="app ai">
+            <div class="art"><img src="./ssr-space.webp" alt="Ilustrasi aplikasi keuangan SSR-SPACE: HP dengan grafik dan diagram, dompet, uang, dan struk" width="1920" height="1280" loading="lazy" /></div>
+            <div class="body">
+              <div class="top"><h3>SSR-SPACE</h3><span class="badge live">Live</span></div>
+              <p>Aplikasi keuangan pribadi: catat pemasukan &amp; pengeluaran per dompet, scan struk otomatis, dan ekspor PDF. Lagi direstyle total ke gaya finance app modern.</p>
+              <div class="tags"><span class="tag">Flutter</span><span class="tag">Scan struk AI</span><span class="tag">Offline-first</span></div>
+              <div class="detail" id="detail-ssr" hidden>
+                <ul>
+                  <li><strong>Per dompet:</strong> pemasukan &amp; pengeluaran tercatat rapi per dompet, nggak kecampur.</li>
+                  <li><strong>Scan struk otomatis:</strong> foto struk, transaksi langsung tercatat pakai AI.</li>
+                  <li><strong>Ekspor PDF:</strong> laporan keuangan bisa diunduh buat dibagikan atau diarsipkan.</li>
+                  <li><strong>Offline-first:</strong> tetap jalan penuh tanpa internet, sinkron belakangan.</li>
+                </ul>
+              </div>
+              <div class="card-foot">
+                <button class="expand-btn" type="button" data-expand="detail-ssr" aria-expanded="false" aria-controls="detail-ssr"><span class="expand-label">Lihat detail</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button>
+              </div>
+            </div>
+          </article>
+
+          <article class="card" data-cat="app">
+            <div class="art"><img src="./laci.webp" alt="Ilustrasi LACI: laci kasir terbuka berisi uang koin dan kertas di meja toko" width="1920" height="1280" loading="lazy" /></div>
+            <div class="body">
+              <div class="top"><h3>LACI</h3><span class="badge dev">Dikembangkan</span></div>
+              <p>Pengganti SSR POS yang jauh lebih ringan: aplikasi Android native buat kasir mencatat laci kas sendiri per shift. Jalan 100% offline tanpa backend — buka, catat, beres.</p>
+              <div class="tags"><span class="tag">Kotlin</span><span class="tag">Jetpack Compose</span><span class="tag">Tanpa backend</span></div>
+              <div class="detail" id="detail-laci" hidden>
+                <ul>
+                  <li><strong>Per shift:</strong> kasir mencatat isi laci kasnya sendiri tiap pergantian shift.</li>
+                  <li><strong>100% offline:</strong> tanpa backend, tanpa server — data aman di HP kasir.</li>
+                  <li><strong>Jauh lebih ringan</strong> dari SSR POS: buka, catat, beres.</li>
+                </ul>
+              </div>
+              <div class="card-foot">
+                <button class="expand-btn" type="button" data-expand="detail-laci" aria-expanded="false" aria-controls="detail-laci"><span class="expand-label">Lihat detail</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button>
+              </div>
+            </div>
+          </article>
+
+          <article class="card" data-cat="app ai">
+            <div class="art"><img src="./senz-browser.webp" alt="Ilustrasi Senz Browser: HP dengan jendela browser, tongkat sihir, robot AI, dan perisai pemblokir iklan" width="1920" height="1280" loading="lazy" /></div>
+            <div class="body">
+              <div class="top"><h3>Senz Browser</h3><span class="badge live">Live · v1.3</span></div>
+              <p>Browser Android dengan “mesin mod” per situs: ganti warna halaman, hapus banner, ekspor data — plus panel AI yang bisa modding halaman dari perintah bahasa biasa. Sudah termasuk scraper produk Tokopedia dan Karir Toolkit berisi 7 alat bantu cari kerja.</p>
+              <div class="tags"><span class="tag">Kotlin</span><span class="tag">WebView</span><span class="tag">AI lokal</span></div>
+              <div class="detail" id="detail-senz" hidden>
+                <ul>
+                  <li><strong>Mesin mod per situs:</strong> ganti warna halaman, hapus banner, ekspor data — tiap situs bisa punya mod sendiri.</li>
+                  <li><strong>Panel AI:</strong> modding halaman cukup pakai perintah bahasa biasa.</li>
+                  <li><strong>Scraper Tokopedia</strong> bawaan buat narik data produk.</li>
+                  <li><strong>Karir Toolkit:</strong> 7 alat bantu cari kerja dalam satu browser.</li>
+                </ul>
+              </div>
+              <div class="card-foot">
+                <button class="expand-btn" type="button" data-expand="detail-senz" aria-expanded="false" aria-controls="detail-senz"><span class="expand-label">Lihat detail</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button>
+              </div>
+            </div>
+          </article>
+
+          <article class="card" data-cat="app ai">
+            <div class="art"><img src="./harness.webp" alt="Ilustrasi DeepSeek Harness: HP dengan maskot paus AI di gelembung chat, terhubung ke ikon peralatan, server, dokumen, dan jaringan memori" width="1920" height="1280" loading="lazy" /></div>
+            <div class="body">
+              <div class="top"><h3>DeepSeek Harness</h3><span class="badge live">Live · vc292</span></div>
+              <p>Aplikasi AI-agent Android dengan otak DeepSeek-only: ngerjain tugas langsung di HP pakai tool-calling, bikin halaman &amp; dokumen lewat Artifacts, jalanin worker dengan pola device-as-server, dan nyimpen memori ber-provenance yang bisa dilacak sumbernya. Dibangun sepenuhnya dari HP, sekarang di versi vc292.</p>
+              <div class="tags"><span class="tag">Kotlin</span><span class="tag">DeepSeek</span><span class="tag">Tool-calling</span><span class="tag">Artifacts</span></div>
+              <div class="detail" id="detail-harness" hidden>
+                <ul>
+                  <li><strong>Tool-calling di HP:</strong> agent ngerjain tugas langsung di perangkat — buka aplikasi, kelola file, bikin dokumen.</li>
+                  <li><strong>Artifacts:</strong> bikin halaman &amp; dokumen langsung dari chat.</li>
+                  <li><strong>Device-as-server:</strong> HP jalanin worker sendiri, tanpa server terpisah.</li>
+                  <li><strong>Memori ber-provenance:</strong> tiap fakta yang diingat bisa dilacak sumbernya dan dikoreksi.</li>
+                  <li><strong>Login DeepSeek sendiri</strong> lewat web login — tanpa API key.</li>
+                </ul>
+              </div>
+              <div class="card-foot">
+                <button class="expand-btn" type="button" data-expand="detail-harness" aria-expanded="false" aria-controls="detail-harness"><span class="expand-label">Lihat detail</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button>
+                <a class="btn primary btn-sm" href="./Harness-v4.48.9.126-pure.apk" download>
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v11"/><path d="m7 10 5 5 5-5"/><path d="M4 21h16"/></svg>
+                  Download Harness Pure
+                </a>
+                <span class="meta-line">vc292 · 4.48.9.126 · 11,5 MB</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- DOWNLOAD -->
+      <section id="unduh">
+        <div class="sec-head">
+          <h2>Download publik</h2>
+          <p>Aplikasi yang bisa langsung lu unduh dari sini — file APK resmi dari build gua sendiri, tanpa perantara.</p>
+        </div>
+        <div class="download">
+          <div>
+            <div class="top"><h3>DeepSeek Harness — Pure</h3><span class="badge live">vc292</span></div>
+            <p>Aplikasi AI-agent Android dengan otak DeepSeek-only: tool-calling langsung di HP, Artifacts buat bikin halaman &amp; dokumen, worker device-as-server, dan memori ber-provenance. Ini build Pure versi terbaru yang gua pakai sendiri.</p>
+            <div class="dl-meta">
+              <span class="tag">Versi 4.48.9.126</span>
+              <span class="tag">APK · 11,5 MB</span>
+              <span class="tag">Android</span>
+            </div>
+            <ul class="dl-notes">
+              <li><strong>Install manual dari APK:</strong> file ini dipasang dari luar Play Store, jadi izinkan “instal dari sumber tak dikenal” di pengaturan HP lu pas diminta.</li>
+              <li><strong>Login DeepSeek sendiri:</strong> aplikasi jalan pakai web login akun DeepSeek lu — tanpa API key, tanpa kunci tambahan.</li>
+            </ul>
+          </div>
+          <div class="dl-action">
+            <a class="btn primary dl-btn" href="./Harness-v4.48.9.126-pure.apk" download>
+              <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v11"/><path d="m7 10 5 5 5-5"/><path d="M4 21h16"/></svg>
+              Download Harness Pure
+            </a>
+            <span class="dl-sub">Harness-v4.48.9.126-pure.apk<br />vc292 / 4.48.9.126 · 11,5 MB</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- LAB -->
+      <section id="lab">
+        <div class="sec-head">
+          <h2>Dari lab — sistem &amp; bot lainnya</h2>
+          <p>Yang jalan di belakang layar: backend yang nggak pernah tidur, bot yang jaga grup dan stok toko, sampai toko produk digital gua.</p>
+        </div>
+        <div class="lab">
+          <article class="lab-item" data-cat="app">
+            <div class="top"><h3>SSR POS</h3><span class="badge live">Live</span></div>
+            <p>Sistem POS buat monitoring kasir dan selisih kas, backend FastAPI yang auto-start tiap HP nyala dan sembuh sendiri kalau crash — versi API 5.6.0 masih jalan sampai sekarang.</p>
+            <a class="link" href="https://pos.pos-ssr.site" target="_blank" rel="noopener">Buka backend-nya →</a>
+          </article>
+
+          <article class="lab-item" data-cat="ai">
+            <div class="top"><h3>Studio Dubbing Senzwh</h3><span class="badge live">Live</span></div>
+            <p>Web app booth dubbing + kantor produksi virtual: 6 agent AI (naskah, animasi, audio, render, publish, analis data) yang produksi konten harian di bawah arahan gua sebagai mandor.</p>
+          </article>
+
+          <article class="lab-item" data-cat="bot">
+            <div class="top"><h3>Klikbot</h3><span class="badge live">Live</span></div>
+            <p>Bot Telegram buat cek stok Klik Indomaret secara real-time. Jalan 24/7 dengan watchdog yang ngejagain dia tetap hidup.</p>
+          </article>
+
+          <article class="lab-item" data-cat="bot">
+            <div class="top"><h3>Bot WhatsApp Toko</h3><span class="badge dev">Bertahap</span></div>
+            <p>Bot monitoring tim toko di WhatsApp: laporan selisih kas, BAP, promo, member, display, sampai rekap harian dan handover shift — porting dari bot Telegram yang sudah terbukti.</p>
+          </article>
+
+          <article class="lab-item" data-cat="ai">
+            <div class="top"><h3>Lynk.id — Toko Produk Digital</h3><span class="badge live">Live</span></div>
+            <p>Toko produk digital gua di Lynk.id: Sekolah Trading Crypto dan Panduan Bedah Akademi Crypto — belajar trading spot yang disiplin, tanpa leverage selama fase belajar.</p>
+            <a class="link" href="https://lynk.id/senzwh" target="_blank" rel="noopener">Buka tokonya →</a>
+          </article>
+
+          <article class="lab-item" data-cat="app">
+            <div class="top"><h3>Ebook Pria Satu Persen</h3><span class="badge dev">Privat</span></div>
+            <p>Rak buku digital pribadi gua: 7 buku pengembangan diri yang terstruktur jadi 883 bagian enak dibaca dari HP — ada pencarian, bookmark, mode gelap, dan progres baca yang kesimpen. Temen setia pas pengen upgrade diri pelan-pelan.</p>
+          </article>
+
+          <article class="lab-item" data-cat="ai">
+            <div class="top"><h3>Sekolah Trading Crypto</h3><span class="badge dev">Berjalan</span></div>
+            <p>Sekolah trading pribadi gua, full Bahasa Indonesia dari nol: 6 level, 20 modul, 60 kuis, dan 107 checklist — dari fondasi, teknikal, fundamental, sampai money management &amp; psikologi. Pace santai, targetnya mandiri, tanpa leverage.</p>
+          </article>
+        </div>
+      </section>
+
+      <!-- CHANNEL -->
+      <section id="konten">
+        <div class="sec-head">
+          <h2>Konten harian</h2>
+          <p>Selain ngoding, gua produksi konten finansial format POV kartun — naskah, visual, dan dubbing gua kerjain sendiri bareng kru AI.</p>
+        </div>
+        <div class="channel">
+          <div>
+            <h3>YouTube @senzwh_</h3>
+            <p>Seri POV finansial yang relate sama ekonomi Indonesia: gaji, inflasi, dan keputusan uang sehari-hari — diceritain pakai maskot dan suara khas channel. Produksi jalan otomatis tiap malam, dan serinya sekarang sudah sampai EP31 — tetap tayang tiap hari, pagi dan siang.</p>
+            <a class="btn primary" href="https://www.youtube.com/@senzwh_" target="_blank" rel="noopener">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M21.6 7.2a2.8 2.8 0 0 0-2-2C17.9 4.8 12 4.8 12 4.8s-5.9 0-7.6.4a2.8 2.8 0 0 0-2 2A29 29 0 0 0 2 12a29 29 0 0 0 .4 4.8 2.8 2.8 0 0 0 2 2c1.7.4 7.6.4 7.6.4s5.9 0 7.6-.4a2.8 2.8 0 0 0 2-2A29 29 0 0 0 22 12a29 29 0 0 0-.4-4.8ZM10 15.2V8.8L15.5 12Z"/></svg>
+              Tonton channel-nya
+            </a>
+          </div>
+          <div class="schedule" aria-label="Jadwal tayang">
+            <div class="slot"><b>Video panjang</b><span>09.00 WIB · tiap hari</span></div>
+            <div class="slot"><b>Shorts</b><span>12.00 WIB · tiap hari</span></div>
+            <div class="slot"><b>Format</b><span>POV kartun · dubbing sendiri</span></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TENTANG + KONTAK -->
+      <section id="kontak">
+        <div class="sec-head">
+          <h2>Tentang &amp; kontak</h2>
+        </div>
+        <div class="about">
+          <div class="panel">
+            <h3>Cara gua kerja</h3>
+            <p><strong>Semua dari HP.</strong> Ngoding, render video, ngatur server, sampai rilis APK — modalnya satu Android, Termux, dan rasa penasaran. Prinsip gua: stabilitas dan fleksibilitas di atas nambah fitur, dan sistem yang bagus itu yang tetap jalan walau nggak ditengok sebulan.</p>
+            <p>Aplikasi yang gua bangun selalu mulai dari masalah nyata sehari-hari: selisih kas, laci yang nggak cocok, stok yang susah dicek. Masalah kecil yang kejadian tiap hari itu yang paling seru dipecahkan pakai teknologi.</p>
+          </div>
+          <div class="panel">
+            <h3>Temukan gua di</h3>
+            <p>
+              YouTube — <a href="https://www.youtube.com/@senzwh_" target="_blank" rel="noopener"><strong>@senzwh_</strong></a><br />
+              Instagram — <a href="https://www.instagram.com/senzwh_" target="_blank" rel="noopener"><strong>@senzwh_</strong></a><br />
+              Threads — <strong>@senzwh</strong><br />
+              GitHub — <a href="https://github.com/Sendysyah27" target="_blank" rel="noopener"><strong>Sendysyah27</strong></a>
+            </p>
+            <p>Stack yang gua pakai: Kotlin &amp; Jetpack Compose, Flutter, Python (FastAPI), Node.js, Remotion, Whisper, dan pasukan bot Telegram/WhatsApp.</p>
+          </div>
+        </div>
+
+        <!-- INSTAGRAM -->
+        <article class="ig-card" aria-label="Profil Instagram">
+          <div class="ig-avatar" aria-hidden="true">S</div>
+          <div class="ig-info">
+            <div class="ig-name-row">
+              <h3 class="ig-name">SENDY</h3>
+              <span class="ig-handle">@senzwh_</span>
+            </div>
+            <p class="ig-bio">yeamwe</p>
+            <div class="ig-stats">
+              <div class="ig-stat"><b>3</b><span>postingan</span></div>
+              <div class="ig-stat"><b>246</b><span>pengikut</span></div>
+              <div class="ig-stat"><b>221</b><span>mengikuti</span></div>
+            </div>
+          </div>
+          <div class="ig-action">
+            <a class="btn primary" href="https://www.instagram.com/senzwh_" target="_blank" rel="noopener">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="0.6" fill="currentColor" stroke="none"/></svg>
+              Buka profil Instagram
+            </a>
+          </div>
+        </article>
+      </section>
+
+      <footer>
+        <span>© 2026 Sendy Syah Ramadhan — dibangun dari HP, buat siapa aja yang lagi mulai dari nol.</span>
+        <span class="mono">pos-ssr.site</span>
+      </footer>
+    </div>
+
+    <script>
+      (function () {
+        var chips = Array.prototype.slice.call(document.querySelectorAll(".chip"));
+        var items = Array.prototype.slice.call(document.querySelectorAll("[data-cat]"));
+        chips.forEach(function (chip) {
+          chip.addEventListener("click", function () {
+            var f = chip.getAttribute("data-filter");
+            chips.forEach(function (c) { c.setAttribute("aria-pressed", c === chip ? "true" : "false"); });
+            items.forEach(function (item) {
+              var cats = (item.getAttribute("data-cat") || "").split(" ");
+              item.hidden = !(f === "all" || cats.indexOf(f) !== -1);
+            });
+          });
+        });
+
+        var expanders = Array.prototype.slice.call(document.querySelectorAll("[data-expand]"));
+        expanders.forEach(function (btn) {
+          btn.addEventListener("click", function () {
+            var panel = document.getElementById(btn.getAttribute("data-expand"));
+            if (!panel) return;
+            var open = btn.getAttribute("aria-expanded") === "true";
+            btn.setAttribute("aria-expanded", String(!open));
+            panel.hidden = open;
+            var label = btn.querySelector(".expand-label");
+            if (label) label.textContent = open ? "Lihat detail" : "Tutup detail";
+          });
+        });
+      })();
+    </script>
+  </body>
+</html>
